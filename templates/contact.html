@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+<div class="wrapper col5">
+  <div id="container">
+	<div id="respond">
+		  <h3>Contact Us - Send email to us. </h3>
+            <form onsubmit="#" method="post" class="form-signin wow fadeInUp">
+				{% csrf_token %}   
+          <p>
+            <input type="text" class="form-control" placeholder="Enter Your Name" autofocus name="username" required>
+            <label for="name"><small>Name (required)</small></label>
+          </p>
+          <p>
+            <input type="text" class="form-control" placeholder="Enter Your Email" autofocus name="username" required>
+            <label for="name"><small>Email (required)</small></label>
+          </p>
+          <p>
+            <input type="text" class="form-control" placeholder="Enter Your Contact Number" autofocus name="username" required>
+            <label for="name"><small>Contact Number (required)</small></label>
+          </p>
+          <p>
+            <input type="text" class="form-control" placeholder="Enter Your Subject" autofocus name="username" required>
+            <label for="name"><small>Subject (required)</small></label>
+          </p>
+          <p>
+            <textarea type="text" class="form-control" placeholder="Enter Your Message" autofocus name="username" required style="height:200px; width:310px;"></textarea>
+            <label for="name"><small>Message (required)</small></label>
+          </p>
+          <p>
+            <input name="submit" type="submit" id="submit" value="Send Message" />
+          </p>
+		  <input type="hidden" name="act" value="check_login">
+        </form>
+     
+            <div class="cleaner"></div>
+			 </div>
+        </div>
+    </div>
+{% endblock content %}

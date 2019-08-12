@@ -1,0 +1,117 @@
+{% load static from staticfiles%}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Hotel Management System</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="/assets/css/layout.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/forms.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/navi.css" type="text/css" />
+<link rel="stylesheet" href="/assets/css/tables.css" type="text/css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body id="top">
+<div class="wrapper col1">
+  <div id="header">
+    <div id="logo">
+      <h1><a href="#">Hotel Management System</a></h1>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<div class="wrapper col2">
+  <div id="topbar">
+    <div id="topnav">
+	<ul>
+	{% if request.session.user_id == 1 %}
+	<li><a href="/" class="current">Home</a></li>
+	<li><a href="/users/dashboard">Dashboard</a></li>
+	{% else %}
+	<li><a href="/" class="current">Home</a></li>
+	<li><a href="/pages/about">About</a></li>
+	<li><a href="/pages/contact">Contact</a></li>
+	{% endif %}
+	
+	{% if request.session.user_id == 1 %}
+	<li><a href="#">Administration</a>
+				<ul>
+						<li><a href="/customer/customer-add">Add Customer</a></li>
+						<li><a href="/room/add">Add Room</a></li>
+						<li><a href="/booking/add">Room Booking</a></li>
+						<li><a href="/billing/add">Room Billing</a></li>
+						<li><a href="/cleaning/add">Room Cleaning Request</a></li>
+						<li><a href="/food/add">Room Food Request</a></li>
+						<li><a href="/laundry/add">Room Laundry Request</a></li>
+				</ul>
+	</li>
+	<li><a href="#">Reporting</a>
+		<ul>
+        <li><a href="/customer/customer-record">Customer Report</a></li>
+        <li><a href="/room">Room Report</a></li>
+        <li><a href="/booking">Booking Report</a></li>
+        <li><a href="/booking/cancel">Cancel Booking</a></li>
+        <li><a href="/billing">Room Billing Report</a></li>
+        <li><a href="/cleaning">Room Cleaning Reports</a></li>
+        <li><a href="/food">Room Food Reports</a></li>
+        <li><a href="/laundry">Room Laundry Reports</a></li>
+		</ul>
+</li>
+	{% if request.session.authenticated %}	
+  {% endif %}	
+  <li><a href="/users/changepassword">Change Password</a></li>
+	<li><a href="/users/logout">Logout</a></li>
+	{% else %}
+	
+	<li><a href="/users">Login</a></li>
+	{% endif %}
+
+</ul>
+    </div>
+    <!--<div id="search">
+      <form action="#" method="post">
+        <fieldset>
+          <legend>Site Search</legend>
+          <input type="text" value="Search Our Website&hellip;"  onfocus="this.value=(this.value=='Search Our Website&hellip;')? '' : this.value ;" />
+          <input type="submit" name="go" id="go" value="Search" />
+        </fieldset>
+      </form>
+    </div>-->
+    <br class="clear" />
+  </div>
+</div>
+	<!--header end-->
+	{% block content %} {% endblock content %}
+	<div class="modal fade" id="myModal-2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title">Record Delete Confirmation ?</h4>
+				</div>
+				<div class="modal-body">
+					<form role="form" class="form-inline">
+						<div class="form-group">
+							Do you want to delete the record ?
+						</div>
+						<div class="rows" style="float:right; margin-top:15px;">
+							<button class="btn btn-danger" type="button" onClick="delete_record()">Delete</button>
+							<button class="btn btn-success" type="button" class="close" data-dismiss="modal" aria-hidden="true">Cancel</button>
+						</div>
+					</form>
+					<div style="clear:both"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>  
+<div class="wrapper col7">
+  <div id="copyright">
+    <p class="fl_left">Copyright &copy; 2017 - All Rights Reserved - <a href="#">Hotel Management System</a></p>
+    
+    <br class="clear" />
+  </div>
+</div>
+</body>
+</html>
