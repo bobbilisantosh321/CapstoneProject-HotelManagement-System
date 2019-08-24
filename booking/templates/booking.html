@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% block content %}
+<script>
+	$( function() {
+	  $( "#booking_date" ).datepicker();
+	} );
+	</script>
+<div class="wrapper col5">
+  <div id="container">
+  <div id="respond">
+		<form enctype="multipart/form-data" method="post" class="form-signin wow fadeInUp" action="" style="max-width:60%">
+			{% csrf_token %}
+			<h2 class="form-signin-heading">
+				{% if fn == "add" %}
+					Add Booking
+				{% elif fn == "update" %}
+					Update Booking
+				{% endif %}
+			</h2>
+			{% if messages %}
+				<div class="alert alert-success fade in" style="margin:10px;">
+					{% for message in messages %}
+						<strong>{{ message }}</strong>
+					{% endfor %}
+				</div>
+			{% endif %}				
+				<p>
+					<select name="booking_customer_id" required class="form-control" placeholder="Donor Name" autofocus="" style="height:30px;"/>
+					<option value="">Select Customer</option>
+					{% for customer in customerlist %}
+						<option value="{{ customer.customer_id }}" {% ifequal customer.customer_id|stringformat:"s" bookingDetails.booking_customer_id %} selected="selected"{% endifequal %}>{{customer.customer_first_name}}</option>
+					{% endfor %}
+					</select>
+				</p>
+				<p>
+					<select name="booking_room_id" required class="form-control" placeholder="Donor Name" autofocus="" style="height:30px;" />
+					<option value="">Select Room</option>
+					{% for room in roomlist %}
+						<option value="{{ room.room_id }}" {% ifequal room.room_id|stringformat:"s" bookingDetails.booking_room_id %} selected="selected"{% endifequal %}>{{room.room_number}}</option>
+					{% endfor %}
+					</select>
+				</p>
+				<p>
+					<input type="date" value="{{bookingDetails.booking_from_date}}" name="booking_from_date" id="booking_from_date" class="form-control" placeholder="From Date">
+					<span style="font-size:12px; color:#000000">From Date</span>
+				</p>
+				<p>
+					<input type="date" value="{{bookingDetails.booking_to_date}}" name="booking_to_date" id="booking_to_date" class="form-control" placeholder="To Date">
+					<span style="font-size:12px; color:#000000">To Date</span>
+				</p>
+				<p>
+					<select name="booking_status" required class="form-control" placeholder="Booking Status" autofocus="" style="height:30px;" />
+					<option value="">Select Booking Status</option>
+					{% for status in statuslist %}
+						<option value="{{ status.status_id }}" {% ifequal status.status_id|stringformat:"s" bookingDetails.booking_status %} selected="selected"{% endifequal %}>{{status.status_name}}</option>
+					{% endfor %}
+					</select>
+				</p>
+				<p>
+					<input type="text" value="{{bookingDetails.booking_amount}}" name="booking_amount" id="booking_amount" class="form-control" placeholder="Total Amount">
+				</p>
+				<p>
+					<input type="text" value="{{bookingDetails.booking_description}}" name="booking_description" id="booking_description" class="form-control" placeholder="Description">
+				</p>
+			<input name="submit" type="submit" id="submit" value="Submit" />
+			<input type="hidden" name="act" value="save_booking">
+			<input type="hidden" name="booking_id" value="{{bookinglist.booking_id}}">
+		</form>
+	</div>
+</div>
+</div>
+{% endblock content %}

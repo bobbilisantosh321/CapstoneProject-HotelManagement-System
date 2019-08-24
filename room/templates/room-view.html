@@ -1,0 +1,57 @@
+{% extends 'base.html' %} 
+{% block content %}
+<script>
+function delete_record(id)
+{
+	if(confirm("Do you want to delete the record ?")) {
+		location.href = "/room/delete/"+id;
+	}
+}
+</script>	
+
+<div class="wrapper col5">
+  <div id="container">
+  <h3>Room Records</h3>
+			{% if messages %}
+				<div class="alert alert-success fade in" style="margin:10px;">
+					{% for message in messages %}
+						<strong>{{ message }}</strong>
+					{% endfor %}
+				</div>
+		  {% endif %}
+		  
+			<form name="frm" action="" method="post">
+			  <table summary="Summary Here" cellpadding="0" cellspacing="0">
+				   <thead>
+					  <tr>
+						<th>Sr. No.</th>
+						<th>Room Number</th>
+						<th>Room Type</th>
+						<th>Cost Per Day</th>
+						<th>Action</th>
+					  </tr>
+					</thead><tbody>
+					  {% for room in roomlist %}
+					  <tr>
+						<td style="text-align:center; font-weight:bold;">{{ forloop.counter }}</td>
+						<td>{{room.room_number}}</td>
+						<td>{{room.room_type}}</td>
+						<td>{{room.room_cost}}</td>
+						
+						<td>
+						  <div class="btn-group">
+						     <a href="/room/update/{{room.room_id}}" class="btn btn-success">Edit</a> | 
+							 <a href="JavaScript:delete_record({{room.room_id}})">Delete</a>
+						  </div>
+						  </td>
+					  </tr>
+					  {% endfor %}
+				   </tbody>
+				</table>
+			  <input type="hidden" name="act" />
+			  <input type="hidden" name="room_id" id="recordID" />
+			 </form>
+		  
+	  </div>
+	</div>
+{% endblock content %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% block content %}
+<script>
+	</script>
+<div class="wrapper col5">
+  <div id="container">
+  <div id="respond">
+		<form enctype="multipart/form-data" method="post" class="form-signin wow fadeInUp" action="" style="max-width:60%">
+			{% csrf_token %}
+			<h2 class="form-signin-heading">
+				{% if fn == "add" %}
+					Add Billing
+				{% elif fn == "update" %}
+					Update Billing
+				{% endif %}
+			</h2>
+			{% if messages %}
+				<div class="alert alert-success fade in" style="margin:10px;">
+					{% for message in messages %}
+						<strong>{{ message }}</strong>
+					{% endfor %}
+				</div>
+			{% endif %}				
+				<p>
+					<select name="billing_booking_id" required class="form-control" placeholder="Donor Name" autofocus="" style="height:30px;" />
+					<option value="">Select Booking ID</option>
+					{% for booking in bookinglist %}
+						<option value="{{ booking.booking_id }}" {% ifequal booking.booking_id|stringformat:"s" billingDetails.billing_booking_id %} selected="selected"{% endifequal %}>{{booking.booking_id}}</option>
+					{% endfor %}
+					</select>
+				</p>
+				<p>
+					<input type="date" value="{{billingDetails.billing_date}}" name="billing_date" id="billing_date" class="form-control" placeholder="Billing Date">
+					<span style="font-size:12px; color:#000000">Billing Date</span>
+				</p>
+				<p>
+					<input type="text" value="{{billingDetails.billing_room_rent}}" name="billing_room_rent" id="billing_room_rent" class="form-control" placeholder="Room Rent">
+				</p>
+				<p>
+					<input type="text" value="{{billingDetails.billing_food_bill}}" name="billing_food_bill" id="billing_food_bill" class="form-control" placeholder="Food Bill">
+				</p>
+				<p>
+					<input type="text" value="{{billingDetails.billing_laundry_bill}}" name="billing_laundry_bill" id="billing_laundry_bill" class="form-control" placeholder="Laundry Bill">
+				</p>
+				<p>
+					<input type="text" value="{{billingDetails.billing_description}}" name="billing_description" id="billing_description" class="form-control" placeholder="Description">
+				</p>
+			<input name="submit" type="submit" id="submit" value="Submit" />
+			<input type="hidden" name="act" value="save_billing">
+			<input type="hidden" name="billing_id" value="{{billinglist.billing_id}}">
+		</form>
+	</div>
+</div>
+</div>
+{% endblock content %}

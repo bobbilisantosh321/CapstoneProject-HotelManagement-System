@@ -1,0 +1,56 @@
+{% extends 'base.html' %} 
+{% block content %}
+<script>
+function delete_record(id)
+{
+	if(confirm("Do you want to delete the record ?")) {
+		location.href = "/cleaning/delete/"+id;
+	}
+}
+</script>	
+
+<div class="wrapper col5">
+  <div id="container">
+  <h3>Cleaning Records</h3>
+			{% if messages %}
+				<div class="alert alert-success fade in" style="margin:10px;">
+					{% for message in messages %}
+						<strong>{{ message }}</strong>
+					{% endfor %}
+				</div>
+		  {% endif %}
+		  
+			<form name="frm" action="" method="post">
+			  <table summary="Summary Here" cellpadding="0" cellspacing="0">
+				   <thead>
+					  <tr>
+						<th>Sr. No.</th>
+						<th>Room Number</th>
+						<th>Request Date</th>
+						<th>Description</th>
+						<th>Action</th>
+					  </tr>
+					</thead><tbody>
+					  {% for cleaning in cleaninglist %}
+					  <tr>
+						<td style="text-align:center; font-weight:bold;">{{ forloop.counter }}</td>
+						<td>{{cleaning.room_number}}</td>
+						<td>{{cleaning.cleaning_date}}</td>
+						<td>{{cleaning.cleaning_description}}</td>						
+						<td>
+						  <div class="btn-group">
+						     <a href="/cleaning/update/{{cleaning.cleaning_id}}" class="btn btn-success">Edit</a> | 
+							 <a href="JavaScript:delete_record({{cleaning.cleaning_id}})">Delete</a>
+						  </div>
+						  </td>
+					  </tr>
+					  {% endfor %}
+				   </tbody>
+				</table>
+			  <input type="hidden" name="act" />
+			  <input type="hidden" name="cleaning_id" id="recordID" />
+			 </form>
+		  
+	  </div>
+	</div>
+{% endblock content %}

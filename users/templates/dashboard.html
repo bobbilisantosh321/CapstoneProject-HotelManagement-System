@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+<br class="clear" />
+<div class="wrapper col3"></div>
+<div class="wrapper col4">
+  <div id="services">
+  <h3>Hotel Management System Dashboard</h3>
+    <ul class="my-menu">
+        <li><a href="/customer/customer-add">Add Customer</a></li>
+        <li><a href="/customer/customer-record">Customer Report</a></li>
+        <li><a href="/room/add">Add Room</a></li>
+        <li><a href="/room">Room Report</a></li>
+        <li><a href="/booking/add">Room Booking</a></li>
+        <li><a href="/booking">Booking Report</a></li>
+        <li><a href="/booking/cancel">Cancel Booking</a></li>
+        <li><a href="/billing/add">Room Billing</a></li>
+        <li><a href="/billing">Room Billing Report</a></li>
+        <li><a href="/cleaning/add">Room Cleaning Request</a></li>
+        <li><a href="/cleaning">Room Cleaning Reports</a></li>
+        <li><a href="/food/add">Room Food Request</a></li>
+        <li><a href="/food">Room Food Reports</a></li>
+        <li><a href="/laundry/add">Room Laundry Request</a></li>
+        <li><a href="/laundry">Room Laundry Reports</a></li>
+        <li><a href="/users/changepassword">Change Password</a></li>
+        <li><a href="/users/logout" class="last">Logout</a></li>
+    </ul>
+    <br class="clear" />
+  </div>
+</div>
+<br class="clear" /><br class="clear" />
+{% endblock content %}

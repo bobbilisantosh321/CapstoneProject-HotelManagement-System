@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="wrapper col5">
+  <div id="container">
+	<div id="respond">
+		  <h3>Login to your Account</h3></br></br>
+            <form id="contact_form" action="#" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+    {% if messages %}
+<div class="alert alert-success fade in" style="margin:10px;">
+{% for message in messages %}
+<strong>{{ message }}</strong>
+{% endfor %}
+</div>
+{% endif %}      
+          <p>
+            <input id="username" name="username" type="text" value="" size="30" required/>
+            <label for="name"><small>Name (required)</small></label>
+          </p>
+          <p>
+            <input id="username" name="username" type="text" value="" size="30" required/>
+            <label for="email"><small>Password (required)</small></label>
+          </p>
+          <p>
+            <button name="submit" type="submit" class="btn-sub">Sign in</button>
+          </p>
+		  <input type="hidden" name="act" value="check_login">
+        </form>
+     
+            <div class="cleaner"></div>
+			 </div>
+        </div>
+    </div>
+
+{% endblock content %}

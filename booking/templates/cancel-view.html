@@ -1,0 +1,54 @@
+{% extends 'base.html' %} 
+{% block content %}
+<script>
+function delete_record(id)
+{
+	if(confirm("Do you want to delete the record ?")) {
+		location.href = "/booking/delete/"+id;
+	}
+}
+</script>	
+
+<div class="wrapper col5">
+  <div id="container">
+  <h3>Cancelled Booking Records</h3>
+			{% if messages %}
+				<div class="alert alert-success fade in" style="margin:10px;">
+					{% for message in messages %}
+						<strong>{{ message }}</strong>
+					{% endfor %}
+				</div>
+		  {% endif %}
+		  
+			<form name="frm" action="" method="post">
+			  <table summary="Summary Here" cellpadding="0" cellspacing="0">
+				   <thead>
+					  <tr>
+						<th>Sr. No.</th>
+						<th>Customer Name</th>
+						<th>Room Number</th>
+						<th>From Date</th>
+						<th>To Date</th>
+						<th>Booking Amount</th>
+						<th>Status</th>
+					  </tr>
+					</thead><tbody>
+					  {% for booking in bookinglist %}
+					  <tr>
+						<td style="text-align:center; font-weight:bold;">{{ forloop.counter }}</td>
+						<td>{{booking.customer_first_name}} {{booking.customer_last_name}}</td>
+						<td>{{booking.room_number}}</td>
+						<td>{{booking.booking_from_date}}</td>
+						<td>{{booking.booking_to_date}}</td>
+						<td>{{booking.booking_amount}}</td>
+						<td>{{booking.status_name}}</td>						
+					  {% endfor %}
+				   </tbody>
+				</table>
+			  <input type="hidden" name="act" />
+			  <input type="hidden" name="booking_id" id="recordID" />
+			 </form>
+		  
+	  </div>
+	</div>
+{% endblock content %}

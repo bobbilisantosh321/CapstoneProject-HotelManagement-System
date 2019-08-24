@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block content %}
+<script>
+	$( function() {
+	  $( "#cleaning_date" ).datepicker();
+	} );
+	</script>
+<div class="wrapper col5">
+  <div id="container">
+  <div id="respond">
+		<form enctype="multipart/form-data" method="post" class="form-signin wow fadeInUp" action="" style="max-width:60%">
+			{% csrf_token %}
+			<h2 class="form-signin-heading">
+				{% if fn == "add" %}
+					Add Cleaning
+				{% elif fn == "update" %}
+					Update Cleaning
+				{% endif %}
+			</h2>
+			{% if messages %}
+				<div class="alert alert-success fade in" style="margin:10px;">
+					{% for message in messages %}
+						<strong>{{ message }}</strong>
+					{% endfor %}
+				</div>
+			{% endif %}				
+				<p>
+					<select name="cleaning_room_id" required class="form-control" placeholder="Donor Name" autofocus="" style="height:30px;" />
+					<option value="">Select Room</option>
+					{% for room in roomlist %}
+						<option value="{{ room.room_id }}" {% ifequal room.room_id|stringformat:"s" cleaningDetails.cleaning_room_id %} selected="selected"{% endifequal %}>{{room.room_number}}</option>
+					{% endfor %}
+					</select>
+				</p>
+				<p>
+					<input type="date" value="{{cleaningDetails.cleaning_date}}" name="cleaning_date" id="cleaning_date" class="form-control" placeholder="Request Date">
+					<span style="font-size:12px; color:#000000">Cleaning Date</span>
+				</p>
+				<p>
+					<input type="text" value="{{cleaningDetails.cleaning_description}}" name="cleaning_description" id="cleaning_description" class="form-control" placeholder="Description">
+				</p>
+			<input name="submit" type="submit" id="submit" value="Submit" />
+			<input type="hidden" name="act" value="save_cleaning">
+			<input type="hidden" name="cleaning_id" value="{{cleaninglist.cleaning_id}}">
+		</form>
+	</div>
+</div>
+</div>
+{% endblock content %}

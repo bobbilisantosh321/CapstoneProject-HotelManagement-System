@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block content %}
+<div class="wrapper col5">
+  <div id="container">
+  <div id="respond">
+		<form enctype="multipart/form-data" method="post" class="form-signin wow fadeInUp" action="" style="max-width:60%">
+			{% csrf_token %}
+			<h2 class="form-signin-heading">
+				{% if fn == "add" %}
+					Add Room
+				{% elif fn == "update" %}
+					Update Room
+				{% endif %}
+			</h2>
+			{% if messages %}
+				<div class="alert alert-success fade in" style="margin:10px;">
+					{% for message in messages %}
+						<strong>{{ message }}</strong>
+					{% endfor %}
+				</div>
+			{% endif %}				
+				<p>
+					<input type="text" value="{{roomDetails.room_number}}" name="room_number" class="form-control" placeholder="Room Number">
+				</p>
+				<p>
+					<input type="text" value="{{roomDetails.room_cost}}" name="room_cost" class="form-control" placeholder="Room Cost Per Day">
+				</p>
+				<p>
+					<input type="text" value="{{roomDetails.room_type}}" name="room_type" id="room_type" class="form-control" placeholder="Room Type">
+				</p>
+				<p>
+					<input type="text" value="{{roomDetails.room_description}}" name="room_description" id="room_description" class="form-control" placeholder="Description">
+				</p>
+			<input name="submit" type="submit" id="submit" value="Submit" />
+			<input type="hidden" name="act" value="save_room">
+			<input type="hidden" name="room_id" value="{{roomlist.room_id}}">
+		</form>
+	</div>
+</div>
+</div>
+{% endblock content %}

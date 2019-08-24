@@ -1,0 +1,58 @@
+{% extends 'base.html' %} 
+{% block content %}
+<script>
+function delete_record(id)
+{
+	if(confirm("Do you want to delete the record ?")) {
+		location.href = "/food/delete/"+id;
+	}
+}
+</script>	
+
+<div class="wrapper col5">
+  <div id="container">
+  <h3>Food Records</h3>
+			{% if messages %}
+				<div class="alert alert-success fade in" style="margin:10px;">
+					{% for message in messages %}
+						<strong>{{ message }}</strong>
+					{% endfor %}
+				</div>
+		  {% endif %}
+		  
+			<form name="frm" action="" method="post">
+			  <table summary="Summary Here" cellpadding="0" cellspacing="0">
+				   <thead>
+					  <tr>
+						<th>Sr. No.</th>
+						<th>Room Number</th>
+						<th>Customer Name</th>
+						<th>Request Date</th>
+						<th>Description</th>
+						<th>Action</th>
+					  </tr>
+					</thead><tbody>
+					  {% for food in foodlist %}
+					  <tr>
+						<td style="text-align:center; font-weight:bold;">{{ forloop.counter }}</td>
+						<td>{{food.room_number}}</td>
+						<td>{{food.customer_first_name}}</td>
+						<td>{{food.food_date}}</td>
+						<td>{{food.food_description}}</td>						
+						<td>
+						  <div class="btn-group">
+						     <a href="/food/update/{{food.food_id}}" class="btn btn-success">Edit</a> | 
+							 <a href="JavaScript:delete_record({{food.food_id}})">Delete</a>
+						  </div>
+						  </td>
+					  </tr>
+					  {% endfor %}
+				   </tbody>
+				</table>
+			  <input type="hidden" name="act" />
+			  <input type="hidden" name="food_id" id="recordID" />
+			 </form>
+		  
+	  </div>
+	</div>
+{% endblock content %}
