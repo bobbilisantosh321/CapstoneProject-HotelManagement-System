@@ -1,4 +1,4 @@
-# Hotel Management System
+## Hotel Management System
 
 The main goal of this project is to provide a portal with simple user interface to hotel management (receptionist, manager or a owner) to manage their customer data digitally.
 
@@ -20,10 +20,22 @@ The following use cases will be covered as part of this project:
 14.	Food Management
 15.	Laundry Management
 
-# Technology stack:
+## How to access the application:
+
+Application is deployed on AWS EC2 instance. It can be access through this instance:
+
+http://ec2-18-191-93-10.us-east-2.compute.amazonaws.com:8000/
+
+UserID: admin
+Password: test
+
+
+## Technology stack:
 
 Front End (User Interface): HTML, JavaScript
 
 Service Layers: Python Django Framework
 
 Database: MySQL
+
+Deployement: AWS EC2 Ubuntu Instance
