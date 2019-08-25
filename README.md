@@ -39,3 +39,14 @@ Service Layers: Python Django Framework
 Database: MySQL
 
 Deployement: AWS EC2 Ubuntu Instance
+
+## Screenshots:
+![](https://github.com/bobbilisantosh321/CapstoneProject-HotelManagement-System/blob/master/HMS-Screenshots/home.png)
+![](https://github.com/bobbilisantosh321/CapstoneProject-HotelManagement-System/blob/master/HMS-Screenshots/login.png)
+![](https://github.com/bobbilisantosh321/CapstoneProject-HotelManagement-System/blob/master/HMS-Screenshots/contact.png)
+![](https://github.com/bobbilisantosh321/CapstoneProject-HotelManagement-System/blob/master/HMS-Screenshots/dashboard.png)
+![](https://github.com/bobbilisantosh321/CapstoneProject-HotelManagement-System/blob/master/HMS-Screenshots/add_customer.png)
+![](https://github.com/bobbilisantosh321/CapstoneProject-HotelManagement-System/blob/master/HMS-Screenshots/customerReport.png)
+![](https://github.com/bobbilisantosh321/CapstoneProject-HotelManagement-System/blob/master/HMS-Screenshots/admin_drop.png)
+![](https://github.com/bobbilisantosh321/CapstoneProject-HotelManagement-System/blob/master/HMS-Screenshots/admin_drop.png)
+![](https://github.com/bobbilisantosh321/CapstoneProject-HotelManagement-System/blob/master/HMS-Screenshots/change_password.png)
