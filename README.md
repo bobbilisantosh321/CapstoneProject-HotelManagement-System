@@ -26,8 +26,8 @@ Application is deployed on AWS EC2 instance. It can be access through this insta
 
 http://ec2-18-191-93-10.us-east-2.compute.amazonaws.com:8000/
 
-UserID: admin
-Password: test
+1. UserID: admin
+2. Password: test
 
 
 ## Technology stack:
